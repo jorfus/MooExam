@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="MooTest.csproj" />
-    <ProjectReference Include="..\MooExam\MooExam.csproj" />
+    <ProjectReference Include="..\MooRefactor\MooRefactor.csproj" />
   </ItemGroup>
 
 </Project>

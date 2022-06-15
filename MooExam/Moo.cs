@@ -2,14 +2,12 @@
 using System.IO;
 using System.Collections.Generic;
 
-namespace MooGame
+namespace MooExam
 {
 	class MainClass
 	{
-
 		public static void Main(string[] args)
 		{
-
 			bool playOn = true;
 			Console.WriteLine("Enter your user name:\n");
 			string name = Console.ReadLine();
