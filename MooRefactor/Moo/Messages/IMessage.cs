@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace MooRefactor
 {
-    public class Game
+    public interface IMessage
     {
-        public Game()
-        {
-                    
-        }
+        
     }
 }

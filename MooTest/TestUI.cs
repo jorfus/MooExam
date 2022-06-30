@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MooTest
 {
-    internal class TestUI
+    public class TestUI
     {
+
     }
 }

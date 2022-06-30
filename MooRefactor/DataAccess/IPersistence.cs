@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MooRefactor
 {
-    public interface IUserIO
+    public interface IPersistence
     {
-        void Output(string str);
-        string Input();
+        void WriteLog(string log);
+        List<string> ReadLog();
     }
 }
