@@ -8,7 +8,7 @@ namespace MooRefactor
 {
     public interface IPersistence
     {
-        void WriteLog(string log);
+        void WriteLog(string name, int guesses);
         List<string> ReadLog();
     }
 }

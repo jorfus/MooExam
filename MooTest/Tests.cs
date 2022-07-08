@@ -11,7 +11,7 @@ public class Tests
     public Tests()
     {
         Game game = new();
-        IUI console = new Display();
+        IUI console = new ConsoleUI();
         TheController = new(console, game);
     }
 

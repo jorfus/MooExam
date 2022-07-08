@@ -23,45 +23,47 @@ namespace MooRefactor
         }
         void ControllerLoop()
         {
-            string target, guess = "", msg;
-            bool menuLoop = true, gameLoop = true, invalidGuess;
+            string guess = "", message;
+            bool menuLoop = true, gameLoop, invalidGuess;
             
             while (menuLoop)
             {
-                target = Game.GenerateTarget();
-                msg = "prompt";
+                Game.GenerateTarget();
+                message = "prompt";
 
-                UI.Print($"\n{Game.GetMessage("start")}");
-                UI.Print($"\n\nFor practice, number is: {target}");
+                UI.Print(Game.GetMessage("start"), 1);
+                UI.Print(Game.GetMessage("debug_show") + Game.GetTarget());
+                
+                gameLoop = true;
 
                 while (gameLoop)
                 {
                     invalidGuess = true;
-                    UI.Print($"\n\n{Game.GetMessage(msg)}");
+
+                    UI.Print($"{Game.GetMessage(message)}");
+                    message = "wrong";
                     
                     while (invalidGuess)
                     {
                         guess = UI.TextInput();
                         
                         if(invalidGuess = Game.Validate(guess))
-                            UI.Print("Type Four Digits, Please");
+                            UI.Print(Game.GetMessage("invalid"), 1);
                     }
                     
-                    msg = "wrong";
-
                     Game.SetGuess(guess);
                     Game.GuessCounter();
 
                     gameLoop = Game.CheckGuess();
                     
-                    UI.Print(UI.FormatResult(Game.GuessResult()));
+                    UI.Print(UI.FormatResult(Game.GuessResult()), 1);
                 }
 
                 Game.LogGame();
                 PrintGamesLog();
-                UI.Print($"\n\n{Game.GetMessage("again")}");
+                UI.Print(Game.GetMessage("again"));
 
-                gameLoop = UI.KeyInput() != ConsoleKey.N;
+                menuLoop = UI.KeyInput() != ConsoleKey.N;
                 Clear();
             }
         }
@@ -72,9 +74,8 @@ namespace MooRefactor
         }
         void PrintGamesLog()
         {
-            List<string> games = Game.GetLog();
-            
-                UI.PrintList(games);
+            List<Log> games = Game.GetPlayerLog();
+            UI.PrintList(games);
         }
         internal void SetUp()
         {

@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace MooRefactor
 {
-    public class Display : IUI
+    public class ConsoleUI : IUI
     {
         public string TextInput()
         {
             return Console.ReadLine() ?? "";
-        }
-        public void Print(string str)
-        {
-            Console.Write(str);
         }
         public string FormatResult(int[] bullCow)
         {
@@ -27,14 +23,18 @@ namespace MooRefactor
         {
             return Console.ReadKey().Key;
         }
-        public void PrintList(List<string> games)
+        public void PrintList(List<Log> logs)
         {
-            foreach (string log in games)
-                Print($"\t{log}");
+            foreach (Log log in logs)
+                Print($"Player '{log.Name}'\t\tGames Played {log.Games}\t\tAverage Score {Math.Round(log.AverageScore, 2)}");
         }
         public void ClearDisplay()
         {
             Console.Clear();
+        }
+        public void Print(string str, int lineBreaks = 2)
+        {
+            Console.Write($"{new string('\n', lineBreaks)}{str}");
         }
     }
 }

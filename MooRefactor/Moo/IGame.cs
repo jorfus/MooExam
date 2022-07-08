@@ -10,15 +10,16 @@ namespace MooRefactor
     {
         string GetPlayer();
         void SetPlayer(string name);
-        string GenerateTarget();
+        void GenerateTarget();
         bool CheckGuess();
         bool Validate(string guess);
         void LogGame();
-        List<string> GetLog();
+        List<Log> GetPlayerLog();
         string GetMessage(string msg);
         void GuessCounter();
         int[] GuessResult();
         void ClearGame();
         void SetGuess(string guess);
+        string GetTarget();
     }
 }

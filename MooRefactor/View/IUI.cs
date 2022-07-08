@@ -8,10 +8,11 @@ namespace MooRefactor
 {
     public interface IUI
     {
-        void Print(string str);
+        //void Print(string str);
+        void Print(string str, int lineBreaks = 2);
         string TextInput();
         ConsoleKey KeyInput();
-        void PrintList(List<string> games);
+        void PrintList(List<Log> games);
         void ClearDisplay();
         string FormatResult(int[] bullsCows);
     }

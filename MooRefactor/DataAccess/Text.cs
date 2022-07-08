@@ -13,18 +13,20 @@ namespace MooRefactor
 			List<string> gameLog = new();
 			StreamReader reader = new("result.txt", new FileStreamOptions() { Access = FileAccess.Read, Mode = FileMode.OpenOrCreate });
 
-			using (reader)
-				while (reader.ReadLine() != null)
-					gameLog.Add(reader.ReadLine());
+			string line = "";
 
+			using (reader)
+				while ((line = reader.ReadLine()) is not null)
+					gameLog.Add(line);
+			
 			return gameLog;
 		}
-		public void WriteLog(string log)
+		public void WriteLog(string name, int guesses)
 		{
 			StreamWriter writer = new("result.txt", append: true);
 
 			using (writer)
-				writer.WriteLine(log + "\n");
+				writer.WriteLine($"{name}#&#{guesses}");
 		}
 	}
 }
