@@ -15,9 +15,9 @@ namespace MooRefactor
 
 		public Game()
 		{
-			string[] messages = { "New Game", "Enter Player Name: ", "Have A Guess: ", "Have Another Guess: ",
+			string[] messages = {"Enter Player Name: ", "New Game", "Have A Guess: ", "Have Another Guess: ",
 			"Play Again?", "Type In Four Digits, Please: ", "for practice, check the number: "};
-			
+
 			Messager = new(messages);
 		}
 		public Game(string[] messages)
@@ -60,24 +60,24 @@ namespace MooRefactor
 		public List<Log> GetPlayerLog()
 		{
 			List<string> logs = Log.ReadLog();
-			List<string[]> dataPairs = new();
+			List<string[]> allPlayerData = new();
+			
 			List<Log> playerLogs = new();
-			int playedGames;
-			double average;
 
             foreach (string log in logs)
-				dataPairs.Add(log.Split("#&#"));
-            
-			var players = dataPairs.Select(pair => pair[0]).Distinct().ToList();
+				allPlayerData.Add(log.Split("#&#"));
 
-			foreach (string player in players)
+			var playerNames = allPlayerData.Select(data => data[0]).Distinct().ToList();
+
+			foreach (string name in playerNames)
 			{
-				var awk = dataPairs.Where(pair => pair[0] == player);
-				
-				playedGames = awk.ToList().Count;
-				average = awk.Select(pair => int.Parse(pair[1])).ToList().Average();
-				
-				playerLogs.Add(new Log(player, playedGames, average));
+				var playerData = allPlayerData.Where(data => data[0] == name);
+
+				var gamesPlayed = playerData.Count();
+
+				var averageScore = playerData.Average(data => Math.Round(double.Parse(data[1]), 2));
+
+				playerLogs.Add(new Log(name, gamesPlayed, averageScore));
 			}
 
 			return playerLogs;
@@ -85,6 +85,7 @@ namespace MooRefactor
 		public void ClearGame()
         {
 			Operator = new();
+			ThePlayer.ResetGuesses();
         }
         public void GuessCounter()
         {

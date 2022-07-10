@@ -45,10 +45,10 @@ namespace MooRefactor
 		//}
 		internal string Switch(string msg) => msg switch
 		{
-			"start" => TheMessages[0],
-			"prompt" => TheMessages[1],
-			"wrong" => TheMessages[2],
-			"name" => TheMessages[3],
+			"name" => TheMessages[0],
+			"start" => TheMessages[1],
+			"prompt" => TheMessages[2],
+			"wrong" => TheMessages[3],
 			"again" => TheMessages[4],
 			"invalid" => TheMessages[5],
 			"debug_show" => TheMessages[6],
