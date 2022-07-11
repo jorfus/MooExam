@@ -46,8 +46,8 @@ namespace MooRefactor
                     while (invalidGuess)
                     {
                         guess = UI.TextInput();
-                        
-                        if(invalidGuess = Game.Validate(guess))
+
+                        if(invalidGuess = Game.NotValid(guess))
                             UI.Print(Game.GetMessage("invalid"), 1);
                     }
                     
@@ -79,8 +79,18 @@ namespace MooRefactor
         }
         internal void SetUp()
         {
-            UI.Print($"{Game.GetMessage("name")}");
-            Game.SetPlayer(UI.TextInput());
+            string name = "";
+            bool invalidName = true;
+
+            while (invalidName)
+            {
+                UI.Print($"{Game.GetMessage("name")}");
+                
+                name = UI.TextInput();
+
+                if (!(invalidName = Game.NotValid(name.ToCharArray())))
+                    Game.SetPlayer(name);
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MooRefactor
 
 		public Game()
 		{
-			string[] messages = {"Enter Player Name: ", "New Game", "Have A Guess: ", "Have Another Guess: ",
+			string[] messages = {"Enter A Four-Character Player Name: ", "New Game", "Have A Guess: ", "Have Another Guess: ",
 			"Play Again?", "Type In Four Digits, Please: ", "for practice, check the number: "};
 
 			Messager = new(messages);
@@ -33,9 +33,13 @@ namespace MooRefactor
 		{
 			Operator.Generate();
 		}
-		public bool Validate(string guess)
+		public bool NotValid(string guess)
 		{
-			return guess.Length != 4;
+			return !(guess.Length == 4 && int.TryParse(guess, out int result));
+		}
+		public bool NotValid(char[] name)
+		{
+			return !(name.Length == 4 && name.All(character => char.IsLetter(character)));
 		}
 		public bool CheckGuess()
 		{

@@ -12,7 +12,8 @@ namespace MooRefactor
         void SetPlayer(string name);
         void GenerateTarget();
         bool CheckGuess();
-        bool Validate(string guess);
+        bool NotValid(string guess);
+        bool NotValid(char[] vs);
         void LogGame();
         List<Log> GetPlayerLog();
         string GetMessage(string msg);
